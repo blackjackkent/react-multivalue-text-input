@@ -1,0 +1,66 @@
+{
+	"extends": "airbnb",
+	"env": {
+		"browser": true,
+		"jest": true
+	},
+	"globals": {
+		"API_BASE_URL": false,
+		"TUMBLR_CLIENT_BASE_URL": false
+	},
+	"rules": {
+		"comma-dangle": [
+			"error",
+			"never"
+		],
+		"linebreak-style": [
+			"error",
+			"windows"
+		],
+		"indent": [
+			"error",
+			"tab",
+			{
+				"SwitchCase": 1
+			}
+		],
+		"no-tabs": "off",
+		"react/jsx-indent": [
+			"error",
+			"tab"
+		],
+		"react/jsx-filename-extension": "off",
+		"react/sort-comp": [
+			"error",
+			{
+				"order": [
+					"lifecycle",
+					"static-methods",
+					"everything-else",
+					"render"
+				]
+			}
+		],
+		"class-methods-use-this": "off",
+		"no-plusplus": "off",
+		"react/jsx-indent-props": [
+			"error",
+			"tab"
+		],
+		"arrow-body-style": [
+			"error",
+			"as-needed"
+		],
+		"import/no-extraneous-dependencies": [
+			"error",
+			{
+				"devDependencies": [
+					"**/*.test.js",
+					"**/*.spec.js",
+					"**/testHelpers.js",
+					"**/setupTests.js"
+				]
+			}
+		]
+	}
+}

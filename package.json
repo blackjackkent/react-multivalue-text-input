@@ -1,0 +1,55 @@
+{
+	"name": "react-multivalue-text-input",
+	"version": "0.0.1",
+	"description": " A text input component for React which maintains and displays a collection of entered values as an array of strings.",
+	"browser": "build/index.js",
+	"peerDependencies": {
+		"react": "^16.3.2"
+	},
+	"dependencies": {
+		"prop-types": "^15.6.1",
+		"react-dom": "^16.3.2"
+	},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"serve:docs": "npx styleguidist server",
+		"build:docs": "npx styleguidist build",
+		"build": "webpack",
+		"clean": "rimraf ./build",
+		"lint": "eslint src/",
+		"lint:watch": "esw src/ -w"
+	},
+	"author": {
+		"name": "Rosalind Wills",
+		"email": "rosalind@blackjack-software.com"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/blackjackkent/react-multivalue-text-input"
+	},
+	"devDependencies": {
+		"webpack": "3.5.5",
+		"react-styleguidist": "^7.0.6",
+		"babel-cli": "^6.26.0",
+		"babel-core": "^6.26.0",
+		"babel-eslint": "^8.2.3",
+		"babel-loader": "^7.1.4",
+		"babel-plugin-transform-object-rest-spread": "^6.26.0",
+		"babel-plugin-transform-react-jsx": "^6.24.1",
+		"babel-preset-env": "^1.6.1",
+		"css-hot-loader": "^1.3.9",
+		"css-loader": "^0.28.11",
+		"eslint": "^4.19.1",
+		"eslint-config-airbnb": "^16.1.0",
+		"eslint-plugin-import": "^2.11.0",
+		"eslint-plugin-jsx-a11y": "^6.0.3",
+		"eslint-plugin-react": "^7.7.0",
+		"eslint-watch": "^3.1.4",
+		"extract-text-webpack-plugin": "^3.0.2",
+		"html-webpack-plugin": "^3.2.0",
+		"node-sass": "^4.8.3",
+		"react": "^16.3.2",
+		"sass-loader": "^7.0.1",
+		"style-loader": "^0.21.0"
+	}
+}
