@@ -1,1 +1,1 @@
-export { default as MultiValueTextInput } from './src';
+export { default as MultiValueTextInput } from './build';
