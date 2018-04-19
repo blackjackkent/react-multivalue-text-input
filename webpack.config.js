@@ -4,7 +4,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const extractSCSS = new ExtractTextPlugin('[name].styles.css');
 module.exports = {
-	entry: ['babel-polyfill', './index.js'],
+	entry: ['babel-polyfill', './src/index.js'],
 	output: {
 		path: path.resolve(__dirname, 'build'),
 		filename: 'index.js',
@@ -14,9 +14,9 @@ module.exports = {
 	module: {
 		rules: [
 			{
-				test: /\.js$/,
+				test: /\.(js|jsx)$/,
 				include: path.resolve(__dirname, 'src'),
-				exclude: /(node_modules|bower_components|build)/,
+				exclude: /(node_modules|bower_components)/,
 				use: {
 					loader: 'babel-loader',
 					options: {

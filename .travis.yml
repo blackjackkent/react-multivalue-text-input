@@ -1,0 +1,12 @@
+language: node_js
+node_js:
+- node
+install:
+  - yarn
+script:
+  - yarn build
+after_success:
+  - "bash ./build-docs.sh"
+env:
+  global:
+    secure: MxJFZA1Xo1I+UJCAQiFhakHwEtpvV6Bw/sD0wiJSTbrL+0UJ01pxrkyUomZwCPHjDgcXcUmIr4nrM8B4/5IBOF77Cv+x1YPVb3u776bHk7guiFAAbkp/Exy8D7og4wkU+UJboGDh7ZwR9Jk/Wv20/ISMTkB6L13Lq9U+tuX3AELhWcVmr3ds5KHs32wbaJ/sWtsNdUUMY6SuNK9HNG+vFAG2hCwCw2WS5aM2kGnicY0U6DL4Lk5OWWdmdAw2aRHX7cXSghBVbUFicP+QKgEhecZ4T90DdiHFKT6gk+VlDZg5eqlOuaKpLgz+/D01iMLIuEC6n636c3IlRzHFIx5AL0v4dKSm5GzQ2UGPCi8t9hmpFVfbs0C6ID9KpeBZmb3deSKPpe0hLA8IMwo7owYrKkUXdupKeuD0o89T4L40GvxBQBXq98wiLAwvW3FsFS3gtvTe+LTDkReHx1yZ1kg8MyMT1j1mj+qdKFY3lYeoUdvy50g2FwByl0qhrn0PKKWFXGX1Q0dNjC8wfZ+rHzjFDcCqHLltndrojBQA7xXQc2oyXYfErTEmjSYxK99MO8n3/Z0PgfwzACCOZA/8OvHRG3PgyG8rDR2T5rBk98W5SR8RX+I2ADbRetww1YPAGjiF77M47hX4YEWQ4KYVUZMwafC1x4kZuVFU18y0cCs5yA8=

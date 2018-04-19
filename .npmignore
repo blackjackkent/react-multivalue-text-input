@@ -1,2 +1,6 @@
 /styleguide
 styleguide.config.js
+build-docs.sh
+.eslintrc
+id_travis_rsa*
+travis.yml
