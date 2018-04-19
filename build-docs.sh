@@ -18,7 +18,7 @@ upload_files() {
   git push --quiet --set-upstream origin-pages gh-pages -f
 }
 
-if [ "$TRAVIS_REPO_SLUG" == "blackjackkent/react-multivalue-text-input" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" == "master" ]; then
+if [ "$TRAVIS_REPO_SLUG" == "blackjackkent/react-multivalue-text-input" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" == "production" ]; then
 
   setup_git
   commit_website_files
