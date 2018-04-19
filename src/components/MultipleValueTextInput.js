@@ -25,7 +25,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-	placeholder: 'Enter values',
+	placeholder: '',
 	charCodes: [13, 44],
 	deleteButton: (<span>&times;</span>),
 	values: [],
