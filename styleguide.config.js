@@ -3,5 +3,6 @@ module.exports = {
 	ignore: ['src/index.js', 'src/components/MultipleValueTextInputItem.js'],
 	skipComponentsWithoutExample: true,
 	showUsage: true,
-	showCode: true
+	showCode: true,
+	showSidebar: false
 };

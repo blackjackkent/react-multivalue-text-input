@@ -1,6 +1,10 @@
 # React Multivalue Text Input
 
- A text input component for React which maintains and displays a collection of entered values as an array of strings.
+![build status](https://travis-ci.org/blackjackkent/react-multivalue-text-input.svg?branch=master)
+
+A text input component for React which maintains and displays a collection of entered values as an array of strings.
+
+![demo image](https://78.media.tumblr.com/29d3a4520cf60d077875017e6027a9e7/tumblr_p7g1fef5wq1qfjrmjo1_1280.gif)
 
 ## Getting Started
 
