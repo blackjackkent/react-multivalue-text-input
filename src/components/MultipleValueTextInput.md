@@ -1,4 +1,4 @@
-### Basic example:
+### Basic example usage:
 
 ```js
 <MultipleValueTextInput
