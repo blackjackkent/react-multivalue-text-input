@@ -1,4 +1,7 @@
+/.vscode
 /styleguide
+/utilities
+**/__tests__
 styleguide.config.js
 build-docs.sh
 .eslintrc

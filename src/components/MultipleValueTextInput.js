@@ -49,6 +49,7 @@ class MultipleValueTextInput extends Component {
 	}
 	handleKeypress(e) {
 		const { onItemAdded, charCodes } = this.props;
+		debugger;
 		// 13: Enter, 44: Comma
 		if (charCodes.includes(e.charCode)) {
 			e.preventDefault();
