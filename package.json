@@ -28,7 +28,8 @@
 		"react-dom": "^16.3.2"
 	},
 	"scripts": {
-		"test": "jest",
+		"pretest": "yarn lint",
+		"test": "jest --coverage",
 		"serve:docs": "npx styleguidist server",
 		"build:docs": "npx styleguidist build",
 		"build": "webpack",
@@ -81,6 +82,18 @@
 		"testEnvironment": "enzyme",
 		"testEnvironmentOptions": {
 			"enzymeAdapter": "react16"
-		}
+		},
+		"coverageThreshold": {
+			"global": {
+				"branches": 100,
+				"functions": 100,
+				"lines": 100,
+				"statements": 100
+			}
+		},
+		"coveragePathIgnorePatterns": [
+			"/node_modules/",
+			"/utilities/"
+		]
 	}
 }

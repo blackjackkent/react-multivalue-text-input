@@ -1,4 +1,5 @@
 /.vscode
+/coverage
 /styleguide
 /utilities
 **/__tests__

@@ -80,4 +80,36 @@ describe('behavior', () => {
 		input.find('input').simulate('keyPress', commaEvent);
 		expect(onItemAdd).toHaveBeenCalledTimes(2);
 	});
+	it('should update state on add', () => {
+		const enterEvent = { preventDefault: () => { }, charCode: 13, target: { value: 'abc' } };
+		const props = createTestProps({ values: ['1', '2'] });
+		const input = shallow(<MultipleValueTextInput {...props} />);
+		input.find('input').simulate('change', { target: { value: 'abc' } });
+		input.find('input').simulate('keyPress', enterEvent);
+		expect(input.find('input')).toHaveProp('value', '');
+		expect(input.find(MultipleValueTextInputItem)).toHaveLength(3);
+	});
+	it('should ignore duplicates', () => {
+		const enterEvent = { preventDefault: () => { }, charCode: 13, target: { value: '1' } };
+		const props = createTestProps({ values: ['1', '2'] });
+		const input = shallow(<MultipleValueTextInput {...props} />);
+		input.find('input').simulate('change', { target: { value: '1' } });
+		input.find('input').simulate('keyPress', enterEvent);
+		expect(input.find('input')).toHaveProp('value', '');
+		expect(input.find(MultipleValueTextInputItem)).toHaveLength(2);
+	});
+	it('should call external remove method', () => {
+		const onItemDelete = jest.fn();
+		const props = createTestProps({ onItemDeleted: onItemDelete, values: ['1', '2'] });
+		const input = shallow(<MultipleValueTextInput {...props} />);
+		input.instance().handleItemRemove('1');
+		expect(onItemDelete).toHaveBeenCalledTimes(1);
+	});
+	it('should remove items from state', () => {
+		const props = createTestProps({ values: ['1', '2'] });
+		const input = shallow(<MultipleValueTextInput {...props} />);
+		input.instance().handleItemRemove('1');
+		input.update();
+		expect(input.find(MultipleValueTextInputItem)).toHaveLength(1);
+	});
 });
