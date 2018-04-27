@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`rendering should render valid snapshot 1`] = `
+<span
+  className="multiple-value-text-input-item"
+>
+  test
+   
+  <span
+    className="multiple-value-text-input-item-delete-button"
+    data-value="test"
+    onClick={[Function]}
+    onKeyPress={[Function]}
+    role="button"
+    tabIndex="-1"
+  >
+    test-delete
+  </span>
+</span>
+`;

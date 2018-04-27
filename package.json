@@ -1,6 +1,6 @@
 {
 	"name": "react-multivalue-text-input",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"description": " A text input component for React which maintains and displays a collection of entered values as an array of strings.",
 	"browser": "build/index.js",
 	"homepage": "https://blackjackkent.github.io/react-multivalue-text-input/styleguide/",
@@ -28,7 +28,9 @@
 		"react-dom": "^16.3.2"
 	},
 	"scripts": {
-		"test": "echo \"Error: no test specified\"",
+		"pretest": "yarn lint",
+		"test": "jest --coverage",
+		"posttest": "make-coverage-badge",
 		"serve:docs": "npx styleguidist server",
 		"build:docs": "npx styleguidist build",
 		"build": "webpack",
@@ -45,8 +47,6 @@
 		"url": "https://github.com/blackjackkent/react-multivalue-text-input"
 	},
 	"devDependencies": {
-		"webpack": "3.5.5",
-		"react-styleguidist": "^7.0.6",
 		"babel-cli": "^6.26.0",
 		"babel-core": "^6.26.0",
 		"babel-eslint": "^8.2.3",
@@ -56,6 +56,8 @@
 		"babel-preset-env": "^1.6.1",
 		"css-hot-loader": "^1.3.9",
 		"css-loader": "^0.28.11",
+		"enzyme": "^3.3.0",
+		"enzyme-adapter-react-16": "^1.1.1",
 		"eslint": "^4.19.1",
 		"eslint-config-airbnb": "^16.1.0",
 		"eslint-plugin-import": "^2.11.0",
@@ -64,9 +66,38 @@
 		"eslint-watch": "^3.1.4",
 		"extract-text-webpack-plugin": "^3.0.2",
 		"html-webpack-plugin": "^3.2.0",
+		"jest": "^22.4.3",
+		"jest-enzyme": "^6.0.0",
 		"node-sass": "^4.8.3",
 		"react": "^16.3.2",
+		"react-styleguidist": "^7.0.6",
 		"sass-loader": "^7.0.1",
-		"style-loader": "^0.21.0"
+		"style-loader": "^0.21.0",
+		"webpack": "3.5.5"
+	},
+	"jest": {
+		"moduleNameMapper": {
+			"\\.(css|scss)$": "<rootDir>/utilities/styleMock.js"
+		},
+		"setupTestFrameworkScriptFile": "./node_modules/jest-enzyme/lib/index.js",
+		"testEnvironment": "enzyme",
+		"testEnvironmentOptions": {
+			"enzymeAdapter": "react16"
+		},
+		"coverageThreshold": {
+			"global": {
+				"branches": 100,
+				"functions": 100,
+				"lines": 100,
+				"statements": 100
+			}
+		},
+		"coveragePathIgnorePatterns": [
+			"/node_modules/",
+			"/utilities/"
+		],
+		"coverageReporters": [
+			"json-summary"
+		]
 	}
 }
