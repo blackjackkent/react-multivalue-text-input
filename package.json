@@ -38,7 +38,7 @@
 		"lint:watch": "esw src/ -w"
 	},
 	"author": {
-		"name": "Rosalind Wills",
+		"name": "Rosalind M. Wills",
 		"email": "rosalind@blackjack-software.com"
 	},
 	"repository": {
