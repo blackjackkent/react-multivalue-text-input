@@ -30,6 +30,7 @@
 	"scripts": {
 		"pretest": "yarn lint",
 		"test": "jest --coverage",
+		"posttest": "make-coverage-badge",
 		"serve:docs": "npx styleguidist server",
 		"build:docs": "npx styleguidist build",
 		"build": "webpack",
@@ -94,6 +95,9 @@
 		"coveragePathIgnorePatterns": [
 			"/node_modules/",
 			"/utilities/"
+		],
+		"coverageReporters": [
+			"json-summary"
 		]
 	}
 }

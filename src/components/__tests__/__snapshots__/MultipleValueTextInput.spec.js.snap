@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`rendering should render valid snapshot with default props 1`] = `
+<div
+  className="multiple-value-text-input"
+>
+  <label
+    htmlFor="test-input"
+  >
+    <div
+      className="multiple-value-text-input-item-container"
+    >
+      <p />
+    </div>
+    <input
+      charCodes={
+        Array [
+          13,
+          44,
+        ]
+      }
+      name="test-input"
+      onChange={[Function]}
+      onKeyPress={[Function]}
+      placeholder=""
+      type="text"
+      value=""
+      values={Array []}
+    />
+  </label>
+</div>
+`;
+
+exports[`rendering should render valid snapshot with passed props 1`] = `
+<div
+  className="multiple-value-text-input"
+>
+  <label
+    htmlFor="test-input"
+  >
+    Test Label
+    <div
+      className="multiple-value-text-input-item-container"
+    >
+      <p />
+    </div>
+    <input
+      charCodes={
+        Array [
+          13,
+          44,
+        ]
+      }
+      name="test-input"
+      onChange={[Function]}
+      onKeyPress={[Function]}
+      placeholder="Test Placeholder"
+      type="text"
+      value=""
+      values={Array []}
+    />
+  </label>
+</div>
+`;

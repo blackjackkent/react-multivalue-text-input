@@ -12,6 +12,16 @@ const createTestProps = propOverrides => ({
 });
 
 describe('rendering', () => {
+	it('should render valid snapshot with default props', () => {
+		const props = createTestProps();
+		const input = shallow(<MultipleValueTextInput {...props} />);
+		expect(input).toMatchSnapshot();
+	});
+	it('should render valid snapshot with passed props', () => {
+		const props = createTestProps({ label: 'Test Label', placeholder: 'Test Placeholder' });
+		const input = shallow(<MultipleValueTextInput {...props} />);
+		expect(input).toMatchSnapshot();
+	});
 	it('should render with default props', () => {
 		const props = createTestProps();
 		const input = shallow(<MultipleValueTextInput {...props} />);
