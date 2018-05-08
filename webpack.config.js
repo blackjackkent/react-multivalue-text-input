@@ -7,8 +7,7 @@ module.exports = {
 	entry: ['./src/index.js'],
 	output: {
 		path: path.resolve(__dirname, 'build'),
-		filename: 'index.js',
-		libraryTarget: 'commonjs2'
+		filename: 'index.js'
 	},
 	devtool: 'eval-source-map',
 	module: {
@@ -51,6 +50,6 @@ module.exports = {
 		new webpack.NamedModulesPlugin()
 	],
 	externals: {
-		react: 'commonjs react' // this line is just to use the React dependency of our parent-testing-project instead of using our own React.
+		react: 'react' // this line is just to use the React dependency of our parent-testing-project instead of using our own React.
 	}
 };
