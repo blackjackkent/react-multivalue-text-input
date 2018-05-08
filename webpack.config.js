@@ -1,5 +1,5 @@
 const webpack = require('webpack');
-let path = require('path');
+const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const extractSCSS = new ExtractTextPlugin('[name].styles.css');
@@ -20,7 +20,12 @@ module.exports = {
 				use: {
 					loader: 'babel-loader',
 					options: {
-						presets: ['env']
+						presets: ['env'],
+						plugins: [
+							'transform-object-rest-spread',
+							'transform-react-jsx',
+							'transform-runtime'
+						]
 					}
 				}
 			},
