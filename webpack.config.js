@@ -48,8 +48,5 @@ module.exports = {
 	plugins: [
 		extractSCSS,
 		new webpack.NamedModulesPlugin()
-	],
-	externals: {
-		react: 'react' // this line is just to use the React dependency of our parent-testing-project instead of using our own React.
-	}
+	]
 };
