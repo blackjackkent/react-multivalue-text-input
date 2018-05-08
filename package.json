@@ -1,6 +1,6 @@
 {
 	"name": "react-multivalue-text-input",
-	"version": "0.3.2",
+	"version": "0.3.3",
 	"description": " A text input component for React which maintains and displays a collection of entered values as an array of strings.",
 	"browser": "build/index.js",
 	"homepage": "https://blackjackkent.github.io/react-multivalue-text-input/styleguide/",
