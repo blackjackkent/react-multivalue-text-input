@@ -5,13 +5,12 @@ exports[`rendering should render valid snapshot with default props 1`] = `
   className="multiple-value-text-input"
 >
   <label
+    className=""
     htmlFor="test-input"
   >
     <div
       className="multiple-value-text-input-item-container"
-    >
-      <p />
-    </div>
+    />
     <input
       charCodes={
         Array [
@@ -19,6 +18,7 @@ exports[`rendering should render valid snapshot with default props 1`] = `
           44,
         ]
       }
+      className=""
       name="test-input"
       onChange={[Function]}
       onKeyPress={[Function]}
@@ -36,14 +36,13 @@ exports[`rendering should render valid snapshot with passed props 1`] = `
   className="multiple-value-text-input"
 >
   <label
+    className=""
     htmlFor="test-input"
   >
     Test Label
     <div
       className="multiple-value-text-input-item-container"
-    >
-      <p />
-    </div>
+    />
     <input
       charCodes={
         Array [
@@ -51,6 +50,7 @@ exports[`rendering should render valid snapshot with passed props 1`] = `
           44,
         ]
       }
+      className=""
       name="test-input"
       onChange={[Function]}
       onKeyPress={[Function]}
