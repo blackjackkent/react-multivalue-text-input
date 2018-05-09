@@ -93,9 +93,10 @@
 				"statements": 100
 			}
 		},
-		"coveragePathIgnorePatterns": [
+		"testPathIgnorePatterns": [
 			"/node_modules/",
-			"/utilities/"
+			"/utilities/",
+			"/build/components/"
 		],
 		"coverageReporters": [
 			"json-summary"
