@@ -33,7 +33,7 @@
 		"test": "jest --coverage",
 		"serve:docs": "npx styleguidist server",
 		"build:docs": "npx styleguidist build",
-		"build": "webpack",
+		"build": "yarn clean && mkdir build && babel src/index.js --out-file build/index.js",
 		"clean": "rimraf ./build",
 		"lint": "eslint src/",
 		"lint:watch": "esw src/ -w"
