@@ -95,7 +95,7 @@
 		},
 		"testPathIgnorePatterns": [
 			"/node_modules/",
-			"/utilities/"
+			"/utilities/",
 			"/build/components/"
 		]
 	}
