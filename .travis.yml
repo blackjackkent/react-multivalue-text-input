@@ -11,6 +11,7 @@ script:
 - yarn build
 - yarn test
 after_success:
+- git config --global core.autocrlf true
 - bash ./build-docs.sh
 env:
   global:
