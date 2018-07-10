@@ -95,9 +95,6 @@
 		"coveragePathIgnorePatterns": [
 			"/node_modules/",
 			"/utilities/"
-		],
-		"coverageReporters": [
-			"json-summary"
 		]
 	}
 }

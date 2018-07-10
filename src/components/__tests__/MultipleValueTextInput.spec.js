@@ -90,6 +90,23 @@ describe('behavior', () => {
 		input.find('input').simulate('keyPress', commaEvent);
 		expect(onItemAdd).toHaveBeenCalledTimes(2);
 	});
+	it('should handle blur to add values when applicable', () => {
+		const onItemAdd = jest.fn();
+		const customEvent1 = { preventDefault: () => { }, target: { value: 'test' } };
+		const props = createTestProps({ onItemAdded: onItemAdd, shouldAddOnBlur: true });
+		const input = shallow(<MultipleValueTextInput {...props} />);
+		input.find('input').simulate('blur', customEvent1);
+		expect(onItemAdd).toHaveBeenCalledTimes(1);
+		expect(onItemAdd).toHaveBeenLastCalledWith('test', ['test']);
+	});
+	it('should ignore blur event when not applicable', () => {
+		const onItemAdd = jest.fn();
+		const customEvent1 = { preventDefault: () => { }, target: { value: 'test' } };
+		const props = createTestProps({ onItemAdded: onItemAdd, shouldAddOnBlur: false });
+		const input = shallow(<MultipleValueTextInput {...props} />);
+		input.find('input').simulate('blur', customEvent1);
+		expect(onItemAdd).toHaveBeenCalledTimes(0);
+	});
 	it('should update state on add', () => {
 		const enterEvent = { preventDefault: () => { }, charCode: 13, target: { value: 'abc' } };
 		const props = createTestProps({ values: ['1', '2'] });
