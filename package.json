@@ -97,9 +97,6 @@
 			"/node_modules/",
 			"/utilities/",
 			"/build/components/"
-		],
-		"coverageReporters": [
-			"json-summary"
 		]
 	}
 }

@@ -20,9 +20,11 @@ exports[`rendering should render valid snapshot with default props 1`] = `
       }
       className=""
       name="test-input"
+      onBlur={[Function]}
       onChange={[Function]}
       onKeyPress={[Function]}
       placeholder=""
+      shouldAddOnBlur={false}
       type="text"
       value=""
       values={Array []}
@@ -52,9 +54,11 @@ exports[`rendering should render valid snapshot with passed props 1`] = `
       }
       className=""
       name="test-input"
+      onBlur={[Function]}
       onChange={[Function]}
       onKeyPress={[Function]}
       placeholder="Test Placeholder"
+      shouldAddOnBlur={false}
       type="text"
       value=""
       values={Array []}
