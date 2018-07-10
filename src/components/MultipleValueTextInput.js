@@ -23,7 +23,11 @@ const propTypes = {
 	/** JSX or string which will be used as the control to delete an item from the collection */
 	deleteButton: PropTypes.node,
 	/** Whether or not the blur event should trigger the added-item handler */
-	shouldAddOnBlur: PropTypes.bool
+	shouldAddOnBlur: PropTypes.bool,
+	/** Custom class name for the input element */
+	className: PropTypes.string,
+	/** Custom class name for the input label element */
+	labelClassName: PropTypes.string
 };
 
 const defaultProps = {
@@ -32,7 +36,9 @@ const defaultProps = {
 	deleteButton: (<span>&times;</span>),
 	values: [],
 	label: '',
-	shouldAddOnBlur: false
+	shouldAddOnBlur: false,
+	className: '',
+	labelClassName: ''
 };
 /**
  * A text input component for React which maintains and displays a collection
@@ -96,6 +102,8 @@ class MultipleValueTextInput extends Component {
 			deleteButton,
 			onItemAdded,
 			onItemDeleted,
+			className,
+			labelClassName,
 			...forwardedProps
 		} = this.props;
 		const values = this.state.values && this.state.values.length
@@ -110,9 +118,9 @@ class MultipleValueTextInput extends Component {
 			/>));
 		return (
 			<div className="multiple-value-text-input">
-				<label htmlFor={name}>{label}
+				<label htmlFor={name} className={labelClassName}>{label}
 					<div className="multiple-value-text-input-item-container">
-						<p>{valueDisplays}</p>
+						{values.length > 0 && <p>{valueDisplays}</p>}
 					</div>
 					<input
 						name={name}
@@ -122,6 +130,7 @@ class MultipleValueTextInput extends Component {
 						onKeyPress={this.handleKeypress}
 						onChange={this.handleValueChange}
 						onBlur={this.handleBlur}
+						className={className}
 						{...forwardedProps}
 					/>
 				</label>

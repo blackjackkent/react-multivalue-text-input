@@ -3,6 +3,7 @@
 	"version": "0.4.0",
 	"description": " A text input component for React which maintains and displays a collection of entered values as an array of strings.",
 	"browser": "build/index.js",
+	"main": "build/index.js",
 	"homepage": "https://blackjackkent.github.io/react-multivalue-text-input/styleguide/",
 	"keywords": [
 		"react",
@@ -32,7 +33,7 @@
 		"test": "jest --coverage",
 		"serve:docs": "npx styleguidist server",
 		"build:docs": "npx styleguidist build",
-		"build": "webpack",
+		"build": "yarn clean && mkdir build && babel src -d build --copy-files",
 		"clean": "rimraf ./build",
 		"lint": "eslint src/",
 		"lint:watch": "esw src/ -w"
@@ -92,9 +93,10 @@
 				"statements": 100
 			}
 		},
-		"coveragePathIgnorePatterns": [
+		"testPathIgnorePatterns": [
 			"/node_modules/",
 			"/utilities/"
+			"/build/components/"
 		]
 	}
 }

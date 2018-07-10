@@ -1,6 +1,5 @@
 .multiple-value-text-input {
-	font-family: Helvetica, Arial, Sans-Serif;
-	input { width: 100%; }
+	input, label { width: 100%; }
 	.multiple-value-text-input-item { padding: 5px; background: #ccc; margin-right: 5px; }
 	.multiple-value-text-input-item-delete-button { cursor: pointer; }
 }
