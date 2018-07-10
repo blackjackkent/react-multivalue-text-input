@@ -48,3 +48,16 @@
 	placeholder="Enter whatever items you want; separate them with SPACE."
 />
 ```
+
+### Add field content on blur
+
+```js
+<MultipleValueTextInput
+	onItemAdded={(item, allItems) => console.log(`Item added: ${item}`)}
+	onItemDeleted={(item, allItems) => console.log(`Item removed: ${item}`)}
+	label="Items"
+	name="item-input"
+	shouldAddOnBlur={true}
+	placeholder="Enter whatever items you want; deselect/blur the input to add item and start a new one."
+/>
+```

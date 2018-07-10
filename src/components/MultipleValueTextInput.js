@@ -21,7 +21,9 @@ const propTypes = {
 	 */
 	charCodes: PropTypes.arrayOf(PropTypes.number),
 	/** JSX or string which will be used as the control to delete an item from the collection */
-	deleteButton: PropTypes.node
+	deleteButton: PropTypes.node,
+	/** Whether or not the blur event should trigger the added-item handler */
+	shouldAddOnBlur: PropTypes.bool
 };
 
 const defaultProps = {
@@ -29,7 +31,8 @@ const defaultProps = {
 	charCodes: [13, 44],
 	deleteButton: (<span>&times;</span>),
 	values: [],
-	label: ''
+	label: '',
+	shouldAddOnBlur: false
 };
 /**
  * A text input component for React which maintains and displays a collection
@@ -46,6 +49,7 @@ class MultipleValueTextInput extends Component {
 		this.handleValueChange = this.handleValueChange.bind(this);
 		this.handleItemAdd = this.handleItemAdd.bind(this);
 		this.handleItemRemove = this.handleItemRemove.bind(this);
+		this.handleBlur = this.handleBlur.bind(this);
 	}
 	handleKeypress(e) {
 		const { onItemAdded, charCodes } = this.props;
@@ -75,6 +79,14 @@ class MultipleValueTextInput extends Component {
 		const newValues = currentValues.filter(v => v !== value);
 		this.props.onItemDeleted(value, newValues);
 		this.setState({ values: newValues });
+	}
+	handleBlur(e) {
+		const { onItemAdded, shouldAddOnBlur } = this.props;
+		// 13: Enter, 44: Comma
+		if (shouldAddOnBlur) {
+			e.preventDefault();
+			this.handleItemAdd(e.target.value, onItemAdded);
+		}
 	}
 	render() {
 		const {
@@ -109,6 +121,7 @@ class MultipleValueTextInput extends Component {
 						type="text"
 						onKeyPress={this.handleKeypress}
 						onChange={this.handleValueChange}
+						onBlur={this.handleBlur}
 						{...forwardedProps}
 					/>
 				</label>
