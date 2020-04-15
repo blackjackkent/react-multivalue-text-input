@@ -12,22 +12,14 @@ exports[`rendering should render valid snapshot with default props 1`] = `
       className="multiple-value-text-input-item-container"
     />
     <input
-      charCodes={
-        Array [
-          13,
-          44,
-        ]
-      }
       className=""
       name="test-input"
       onBlur={[Function]}
       onChange={[Function]}
       onKeyPress={[Function]}
       placeholder=""
-      shouldAddOnBlur={false}
       type="text"
       value=""
-      values={Array []}
     />
   </label>
 </div>
@@ -46,22 +38,14 @@ exports[`rendering should render valid snapshot with passed props 1`] = `
       className="multiple-value-text-input-item-container"
     />
     <input
-      charCodes={
-        Array [
-          13,
-          44,
-        ]
-      }
       className=""
       name="test-input"
       onBlur={[Function]}
       onChange={[Function]}
       onKeyPress={[Function]}
       placeholder="Test Placeholder"
-      shouldAddOnBlur={false}
       type="text"
       value=""
-      values={Array []}
     />
   </label>
 </div>
