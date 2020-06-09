@@ -104,6 +104,9 @@ class MultipleValueTextInput extends Component {
 			onItemDeleted,
 			className,
 			labelClassName,
+			charCodes,
+			values: InputValues,
+			shouldAddOnBlur,
 			...forwardedProps
 		} = this.props;
 		const values = this.state.values && this.state.values.length
