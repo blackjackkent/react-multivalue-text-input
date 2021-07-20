@@ -1,0 +1,12 @@
+.multiple-value-text-input input,
+.multiple-value-text-input label {
+	width: 100%;
+}
+.multiple-value-text-input .multiple-value-text-input-item {
+	padding: 5px;
+	background: #ccc;
+	margin-right: 5px;
+}
+.multiple-value-text-input .multiple-value-text-input-item-delete-button {
+	cursor: pointer;
+}
