@@ -9,14 +9,8 @@
 		"TUMBLR_CLIENT_BASE_URL": false
 	},
 	"rules": {
-		"comma-dangle": [
-			"error",
-			"never"
-		],
-		"linebreak-style": [
-			"error",
-			"windows"
-		],
+		"comma-dangle": ["error", "never"],
+		"linebreak-style": ["error", "windows"],
 		"indent": [
 			"error",
 			"tab",
@@ -25,32 +19,18 @@
 			}
 		],
 		"no-tabs": "off",
-		"react/jsx-indent": [
-			"error",
-			"tab"
-		],
+		"react/jsx-indent": ["error", "tab"],
 		"react/jsx-filename-extension": "off",
 		"react/sort-comp": [
 			"error",
 			{
-				"order": [
-					"lifecycle",
-					"static-methods",
-					"everything-else",
-					"render"
-				]
+				"order": ["lifecycle", "static-methods", "everything-else", "render"]
 			}
 		],
 		"class-methods-use-this": "off",
 		"no-plusplus": "off",
-		"react/jsx-indent-props": [
-			"error",
-			"tab"
-		],
-		"arrow-body-style": [
-			"error",
-			"as-needed"
-		],
+		"react/jsx-indent-props": ["error", "tab"],
+		"arrow-body-style": ["error", "as-needed"],
 		"import/no-extraneous-dependencies": [
 			"error",
 			{
@@ -61,6 +41,8 @@
 					"**/setupTests.js"
 				]
 			}
-		]
+		],
+		"function-paren-newline": ["error", "consistent"],
+		"arrow-parens": ["error", "always"]
 	}
 }

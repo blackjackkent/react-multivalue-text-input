@@ -1,8 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const extractSCSS = new ExtractTextPlugin('[name].styles.css');
 module.exports = {
 	entry: ['./src/index.js'],
 	output: {
@@ -27,26 +25,8 @@ module.exports = {
 						]
 					}
 				}
-			},
-			{
-				test: /\.(scss)$/,
-				use: ['css-hot-loader'].concat(extractSCSS.extract({
-					fallback: 'style-loader',
-					use: [
-						{
-							loader: 'css-loader',
-							options: { alias: { '../img': '../public/img' } }
-						},
-						{
-							loader: 'sass-loader'
-						}
-					]
-				}))
 			}
 		]
 	},
-	plugins: [
-		extractSCSS,
-		new webpack.NamedModulesPlugin()
-	]
+	plugins: [new webpack.NamedModulesPlugin()]
 };

@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import MultipleValueTextInputItem from '../MultipleValueTextInputItem';
 
-const createTestProps = propOverrides => ({
+const createTestProps = (propOverrides) => ({
 	// common props
 	value: 'test',
 	handleItemRemove: jest.fn(),

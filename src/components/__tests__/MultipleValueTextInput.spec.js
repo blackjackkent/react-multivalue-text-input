@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import MultipleValueTextInput from '../MultipleValueTextInput';
 import MultipleValueTextInputItem from '../MultipleValueTextInputItem';
 
-const createTestProps = propOverrides => ({
+const createTestProps = (propOverrides) => ({
 	// common props
 	onItemAdded: jest.fn(),
 	onItemDeleted: jest.fn(),
@@ -68,9 +68,9 @@ describe('behavior', () => {
 	});
 	it('should handle default char codes to add values', () => {
 		const onItemAdd = jest.fn();
-		const enterEvent = { preventDefault: () => { }, charCode: 13, target: { value: '1' } };
-		const commaEvent = { preventDefault: () => { }, charCode: 44, target: { value: '2' } };
-		const otherEvent = { preventDefault: () => { }, charCode: 10, target: { value: '3' } };
+		const enterEvent = { preventDefault: () => {}, charCode: 13, target: { value: '1' } };
+		const commaEvent = { preventDefault: () => {}, charCode: 44, target: { value: '2' } };
+		const otherEvent = { preventDefault: () => {}, charCode: 10, target: { value: '3' } };
 		const props = createTestProps({ onItemAdded: onItemAdd });
 		const input = shallow(<MultipleValueTextInput {...props} />);
 		input.find('input').simulate('keyPress', enterEvent);
@@ -80,9 +80,9 @@ describe('behavior', () => {
 	});
 	it('should handle custom char codes to add values', () => {
 		const onItemAdd = jest.fn();
-		const customEvent1 = { preventDefault: () => { }, charCode: 10, target: { value: '1' } };
-		const customEvent2 = { preventDefault: () => { }, charCode: 20, target: { value: '2' } };
-		const commaEvent = { preventDefault: () => { }, charCode: 30, target: { value: '3' } };
+		const customEvent1 = { preventDefault: () => {}, charCode: 10, target: { value: '1' } };
+		const customEvent2 = { preventDefault: () => {}, charCode: 20, target: { value: '2' } };
+		const commaEvent = { preventDefault: () => {}, charCode: 30, target: { value: '3' } };
 		const props = createTestProps({ onItemAdded: onItemAdd, charCodes: [10, 20] });
 		const input = shallow(<MultipleValueTextInput {...props} />);
 		input.find('input').simulate('keyPress', customEvent1);
@@ -92,7 +92,7 @@ describe('behavior', () => {
 	});
 	it('should handle blur to add values when applicable', () => {
 		const onItemAdd = jest.fn();
-		const customEvent1 = { preventDefault: () => { }, target: { value: 'test' } };
+		const customEvent1 = { preventDefault: () => {}, target: { value: 'test' } };
 		const props = createTestProps({ onItemAdded: onItemAdd, shouldAddOnBlur: true });
 		const input = shallow(<MultipleValueTextInput {...props} />);
 		input.find('input').simulate('blur', customEvent1);
@@ -101,14 +101,14 @@ describe('behavior', () => {
 	});
 	it('should ignore blur event when not applicable', () => {
 		const onItemAdd = jest.fn();
-		const customEvent1 = { preventDefault: () => { }, target: { value: 'test' } };
+		const customEvent1 = { preventDefault: () => {}, target: { value: 'test' } };
 		const props = createTestProps({ onItemAdded: onItemAdd, shouldAddOnBlur: false });
 		const input = shallow(<MultipleValueTextInput {...props} />);
 		input.find('input').simulate('blur', customEvent1);
 		expect(onItemAdd).toHaveBeenCalledTimes(0);
 	});
 	it('should update state on add', () => {
-		const enterEvent = { preventDefault: () => { }, charCode: 13, target: { value: 'abc' } };
+		const enterEvent = { preventDefault: () => {}, charCode: 13, target: { value: 'abc' } };
 		const props = createTestProps({ values: ['1', '2'] });
 		const input = shallow(<MultipleValueTextInput {...props} />);
 		input.find('input').simulate('change', { target: { value: 'abc' } });
@@ -117,7 +117,7 @@ describe('behavior', () => {
 		expect(input.find(MultipleValueTextInputItem)).toHaveLength(3);
 	});
 	it('should ignore duplicates', () => {
-		const enterEvent = { preventDefault: () => { }, charCode: 13, target: { value: '1' } };
+		const enterEvent = { preventDefault: () => {}, charCode: 13, target: { value: '1' } };
 		const props = createTestProps({ values: ['1', '2'] });
 		const input = shallow(<MultipleValueTextInput {...props} />);
 		input.find('input').simulate('change', { target: { value: '1' } });

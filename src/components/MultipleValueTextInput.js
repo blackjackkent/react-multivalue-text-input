@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import '../styles/styles.scss';
+import '../styles/styles.css';
 import MultipleValueTextInputItem from './MultipleValueTextInputItem';
 
 const propTypes = {
@@ -33,7 +33,7 @@ const propTypes = {
 const defaultProps = {
 	placeholder: '',
 	charCodes: [13, 44],
-	deleteButton: (<span>&times;</span>),
+	deleteButton: <span>&times;</span>,
 	values: [],
 	label: '',
 	shouldAddOnBlur: false,
@@ -82,7 +82,7 @@ class MultipleValueTextInput extends Component {
 	}
 	handleItemRemove(value) {
 		const currentValues = this.state.values;
-		const newValues = currentValues.filter(v => v !== value);
+		const newValues = currentValues.filter((v) => v !== value);
 		this.props.onItemDeleted(value, newValues);
 		this.setState({ values: newValues });
 	}
@@ -109,19 +109,20 @@ class MultipleValueTextInput extends Component {
 			shouldAddOnBlur,
 			...forwardedProps
 		} = this.props;
-		const values = this.state.values && this.state.values.length
-			? this.state.values
-			: this.props.values;
-		const valueDisplays = values.map(v => (
+		const values =
+			this.state.values && this.state.values.length ? this.state.values : this.props.values;
+		const valueDisplays = values.map((v) => (
 			<MultipleValueTextInputItem
 				value={v}
 				key={v}
 				deleteButton={deleteButton}
 				handleItemRemove={this.handleItemRemove}
-			/>));
+			/>
+		));
 		return (
 			<div className="multiple-value-text-input">
-				<label htmlFor={name} className={labelClassName}>{label}
+				<label htmlFor={name} className={labelClassName}>
+					{label}
 					<div className="multiple-value-text-input-item-container">
 						{values.length > 0 && <p>{valueDisplays}</p>}
 					</div>
