@@ -36,7 +36,8 @@
 		"build": "npm run clean && mkdir build && babel src -d build --copy-files",
 		"clean": "rimraf ./build",
 		"lint": "eslint src/",
-		"lint:watch": "esw src/ -w"
+		"lint:watch": "esw src/ -w",
+		"version": "np"
 	},
 	"author": {
 		"name": "Rosalind Wills",
