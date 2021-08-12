@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render, screen } from '@testing-library/react';
 import MultipleValueTextInput from '../MultipleValueTextInput';
 import MultipleValueTextInputItem from '../MultipleValueTextInputItem';
 

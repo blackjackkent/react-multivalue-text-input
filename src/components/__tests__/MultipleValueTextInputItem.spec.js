@@ -1,5 +1,4 @@
 import React from 'react';
-import { shallow } from 'enzyme';
 import MultipleValueTextInputItem from '../MultipleValueTextInputItem';
 
 const createTestProps = (propOverrides) => ({

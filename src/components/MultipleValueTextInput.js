@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import PropTypes from 'prop-types';
 import '../styles/styles.css';
 import MultipleValueTextInputItem from './MultipleValueTextInputItem';
@@ -44,104 +44,86 @@ const defaultProps = {
  * A text input component for React which maintains and displays a collection
  * of entered values as an array of strings.
  */
-class MultipleValueTextInput extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			values: props.values,
-			value: ''
-		};
-		this.handleKeypress = this.handleKeypress.bind(this);
-		this.handleValueChange = this.handleValueChange.bind(this);
-		this.handleItemAdd = this.handleItemAdd.bind(this);
-		this.handleItemRemove = this.handleItemRemove.bind(this);
-		this.handleBlur = this.handleBlur.bind(this);
-	}
-	handleKeypress(e) {
-		const { onItemAdded, charCodes } = this.props;
+const MultipleValueTextInput = ({
+	placeholder,
+	label,
+	name,
+	deleteButton,
+	onItemAdded,
+	onItemDeleted,
+	className,
+	labelClassName,
+	charCodes,
+	values: initialValues,
+	shouldAddOnBlur,
+	...forwardedProps
+}) => {
+	const [values, setValues] = useState(initialValues);
+	const [value, setValue] = useState(value);
+	const handleValueChange = (e) => {
+		setValue(e.target.value);
+	};
+	const handleItemAdd = (addedValue) => {
+		if (values.includes(addedValue) || !addedValue) {
+			setValue('');
+			return;
+		}
+		const newValues = values.concat(addedValue);
+		setValues(newValues);
+		setValue('');
+		onItemAdded(value, newValues);
+	};
+	const handleItemRemove = (removedValue) => {
+		const currentValues = values;
+		const newValues = currentValues.filter((v) => v !== removedValue);
+		onItemDeleted(removedValue, newValues);
+		setValues(newValues);
+	};
+
+	const handleKeypress = (e) => {
 		// 13: Enter, 44: Comma
 		if (charCodes.includes(e.charCode)) {
 			e.preventDefault();
-			this.handleItemAdd(e.target.value, onItemAdded);
+			handleItemAdd(e.target.value, onItemAdded);
 		}
-	}
-	handleValueChange(e) {
-		this.setState({ value: e.target.value });
-	}
-	handleItemAdd(value, onItemAdded) {
-		if (this.state.values.includes(value) || !value) {
-			this.setState({ value: '' });
-			return;
-		}
-		const newValues = this.state.values.concat(value);
-		this.setState({
-			values: newValues,
-			value: ''
-		});
-		onItemAdded(value, newValues);
-	}
-	handleItemRemove(value) {
-		const currentValues = this.state.values;
-		const newValues = currentValues.filter((v) => v !== value);
-		this.props.onItemDeleted(value, newValues);
-		this.setState({ values: newValues });
-	}
-	handleBlur(e) {
-		const { onItemAdded, shouldAddOnBlur } = this.props;
+	};
+	const handleBlur = (e) => {
 		// 13: Enter, 44: Comma
 		if (shouldAddOnBlur) {
 			e.preventDefault();
-			this.handleItemAdd(e.target.value, onItemAdded);
+			handleItemAdd(e.target.value, onItemAdded);
 		}
-	}
-	render() {
-		const {
-			placeholder,
-			label,
-			name,
-			deleteButton,
-			onItemAdded,
-			onItemDeleted,
-			className,
-			labelClassName,
-			charCodes,
-			values: InputValues,
-			shouldAddOnBlur,
-			...forwardedProps
-		} = this.props;
-		const values =
-			this.state.values && this.state.values.length ? this.state.values : this.props.values;
-		const valueDisplays = values.map((v) => (
-			<MultipleValueTextInputItem
-				value={v}
-				key={v}
-				deleteButton={deleteButton}
-				handleItemRemove={this.handleItemRemove}
-			/>
-		));
-		return (
-			<div className="multiple-value-text-input">
-				<label htmlFor={name} className={labelClassName}>
-					{label}
-					<div className="multiple-value-text-input-item-container">
-						{values.length > 0 && <p>{valueDisplays}</p>}
-					</div>
-					<input
-						name={name}
-						placeholder={placeholder}
-						value={this.state.value}
-						type="text"
-						onKeyPress={this.handleKeypress}
-						onChange={this.handleValueChange}
-						onBlur={this.handleBlur}
-						className={className}
-						{...forwardedProps}
-					/>
-				</label>
-			</div>
-		);
-	}
-}
+	};
+	const valueDisplays = values.map((v) => (
+		<MultipleValueTextInputItem
+			value={v}
+			key={v}
+			deleteButton={deleteButton}
+			handleItemRemove={handleItemRemove}
+		/>
+	));
+	return (
+		<div className="multiple-value-text-input">
+			<label htmlFor={name} className={labelClassName}>
+				{label}
+				<div className="multiple-value-text-input-item-container">
+					{values.length > 0 && <p>{valueDisplays}</p>}
+				</div>
+				<input
+					name={name}
+					placeholder={placeholder}
+					value={value}
+					type="text"
+					onKeyPress={handleKeypress}
+					onChange={handleValueChange}
+					onBlur={handleBlur}
+					className={className}
+					{...forwardedProps}
+				/>
+			</label>
+		</div>
+	);
+};
 
 MultipleValueTextInput.propTypes = propTypes;
 MultipleValueTextInput.defaultProps = defaultProps;
