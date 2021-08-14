@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import '../styles/styles.css';
 import MultipleValueTextInputItem from './MultipleValueTextInputItem';
@@ -59,7 +59,7 @@ const MultipleValueTextInput = ({
 	...forwardedProps
 }) => {
 	const [values, setValues] = useState(initialValues);
-	const [value, setValue] = useState(value);
+	const [value, setValue] = useState('');
 	const handleValueChange = (e) => {
 		setValue(e.target.value);
 	};
@@ -103,13 +103,14 @@ const MultipleValueTextInput = ({
 		/>
 	));
 	return (
-		<div className="multiple-value-text-input">
-			<label htmlFor={name} className={labelClassName}>
+		<div className="multiple-value-text-input" role="form">
+			<label htmlFor={name} className={labelClassName} data-testid="label">
 				{label}
 				<div className="multiple-value-text-input-item-container">
-					{values.length > 0 && <p>{valueDisplays}</p>}
+					{values.length > 0 && <p role="list">{valueDisplays}</p>}
 				</div>
 				<input
+					aria-label={label}
 					name={name}
 					placeholder={placeholder}
 					value={value}
