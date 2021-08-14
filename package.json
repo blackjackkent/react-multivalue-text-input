@@ -37,7 +37,7 @@
 		"clean": "rimraf ./build",
 		"lint": "eslint src/",
 		"lint:watch": "esw src/ -w",
-		"version": "np --no-publish --any-branch"
+		"np": "np --no-publish --branch=production"
 	},
 	"author": {
 		"name": "Rosalind Wills",
