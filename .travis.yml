@@ -23,5 +23,4 @@ deploy:
         secure: GclAEFdusSw5J3xeEiNToiNXWsPAuzhT/yFkivMTw5tNiF88oHroHvTIihmJ5nIbmzp3e4VN1bfK1s5jSh//lswlUr4NohbZO75CICGxjqnvbuWICdEejwG0XbcxziZ9/4rh9NnHqBTKG4YCUI4k4cOPAEbCUfW/oI5AYWjFrRyzUl4HRYLEdDQbOYo4JCrUP41KnIq7eRKJRPLy1TGGMO0P5tVWgfNRBxbghRzbkLbAXFhpsmcBQM4pXC7kIu9KH7o+YdtKKqTBucLY5nDqih8TuQcvMpUq9RGVNoDTw/WNd45ZnQOWJxC8rBqerXNg1fgaaiYF9s0A8Wrummlkhf5O985B6nmW5ALwDJDFTYNXhtb/S4uMWPvPJnhKOvbDy6pfaPXcHRqhEhaVPTvcANmz0IFMTAEfw82frLwAspKz/8p0IRT82oLvxLb+5vtLWYPppzWMU95PlyEUa0tHT/mP2uloVWsaxj7CJOQ/sG6myGh1bwP2Ms5SbHpO2x7Wgr9ewt1/ygXJahec2/jjbTEInQhTZPclE6sQoZN0cRzqAwgWejs02abuuhRsc1andfDcVcAKy1pX4CR77lsXFeHy25Guoc112PWXwRECYfi0/ABKc0mB3gsq9VnsC7qAVsYJHZ5zBBa2DTcedOimj+vTOWMK5gAfszmNKyiCOJw=
     on:
         branch: production
-        tags: true
     skip_cleanup: true
