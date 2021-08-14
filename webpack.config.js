@@ -17,14 +17,13 @@ module.exports = {
 				use: {
 					loader: 'babel-loader',
 					options: {
-						presets: ['env'],
-						plugins: [
-							'transform-object-rest-spread',
-							'transform-react-jsx',
-							'transform-runtime'
-						]
+						presets: ['@babel/preset-env', '@babel/preset-react']
 					}
 				}
+			},
+			{
+				test: /\.css$/i,
+				use: ['style-loader', 'css-loader']
 			}
 		]
 	},

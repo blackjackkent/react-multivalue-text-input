@@ -10,8 +10,10 @@ const propTypes = {
 const MultipleValueTextInputItem = (props) => {
 	const { value, handleItemRemove, deleteButton } = props;
 	return (
-		<span className="multiple-value-text-input-item">
-			{value}{' '}
+		<span className="multiple-value-text-input-item" role="listitem">
+			<span className="multiple-value-text-input-item-value" data-testid="value">
+				{value}
+			</span>{' '}
 			<span
 				className="multiple-value-text-input-item-delete-button"
 				data-value={value}
