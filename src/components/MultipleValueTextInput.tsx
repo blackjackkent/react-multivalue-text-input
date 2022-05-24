@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import '../styles/styles.css';
+import { MultipleValueTextInputProps } from '../types';
 import MultipleValueTextInputItem from './MultipleValueTextInputItem';
 
 const propTypes = {
@@ -19,7 +20,7 @@ const propTypes = {
 	/** ASCII charcode for the keys which should
 	 * trigger an item to be added to the collection (defaults to comma (44) and Enter (13))
 	 */
-	charCodes: PropTypes.arrayOf(PropTypes.number),
+	submitKeys: PropTypes.arrayOf(PropTypes.string),
 	/** JSX or string which will be used as the control to delete an item from the collection */
 	deleteButton: PropTypes.node,
 	/** Whether or not the blur event should trigger the added-item handler */
@@ -30,40 +31,30 @@ const propTypes = {
 	labelClassName: PropTypes.string
 };
 
-const defaultProps = {
-	placeholder: '',
-	charCodes: [13, 44],
-	deleteButton: <span>&times;</span>,
-	values: [],
-	label: '',
-	shouldAddOnBlur: false,
-	className: '',
-	labelClassName: ''
-};
 /**
  * A text input component for React which maintains and displays a collection
  * of entered values as an array of strings.
  */
-const MultipleValueTextInput = ({
-	placeholder,
-	label,
+function MultipleValueTextInput({
+	placeholder = '',
+	label = '',
 	name,
-	deleteButton,
-	onItemAdded,
-	onItemDeleted,
-	className,
-	labelClassName,
-	charCodes,
-	values: initialValues,
+	deleteButton = <span>&times;</span>,
+	onItemAdded = () => null,
+	onItemDeleted = () => null,
+	className = '',
+	labelClassName = '',
+	submitKeys = ['Enter', ','],
+	values: initialValues = [],
 	shouldAddOnBlur,
 	...forwardedProps
-}) => {
+}: MultipleValueTextInputProps) {
 	const [values, setValues] = useState(initialValues);
 	const [value, setValue] = useState('');
-	const handleValueChange = (e) => {
-		setValue(e.target.value);
+	const handleValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		setValue(e.currentTarget.value);
 	};
-	const handleItemAdd = (addedValue) => {
+	const handleItemAdd = (addedValue: string) => {
 		if (values.includes(addedValue) || !addedValue) {
 			setValue('');
 			return;
@@ -73,25 +64,24 @@ const MultipleValueTextInput = ({
 		setValue('');
 		onItemAdded(value, newValues);
 	};
-	const handleItemRemove = (removedValue) => {
+	const handleItemRemove = (removedValue: string) => {
 		const currentValues = values;
 		const newValues = currentValues.filter((v) => v !== removedValue);
 		onItemDeleted(removedValue, newValues);
 		setValues(newValues);
 	};
 
-	const handleKeypress = (e) => {
-		// 13: Enter, 44: Comma
-		if (charCodes.includes(e.charCode)) {
+	const handleKeypress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+		// Defaults: Enter, Comma (e.key === 'Enter' or ',')
+		if (submitKeys.includes(e.key)) {
 			e.preventDefault();
-			handleItemAdd(e.target.value, onItemAdded);
+			handleItemAdd(e.currentTarget.value);
 		}
 	};
-	const handleBlur = (e) => {
-		// 13: Enter, 44: Comma
+	const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
 		if (shouldAddOnBlur) {
 			e.preventDefault();
-			handleItemAdd(e.target.value, onItemAdded);
+			handleItemAdd(e.target.value);
 		}
 	};
 	const valueDisplays = values.map((v) => (
@@ -124,8 +114,7 @@ const MultipleValueTextInput = ({
 			</label>
 		</div>
 	);
-};
+}
 
 MultipleValueTextInput.propTypes = propTypes;
-MultipleValueTextInput.defaultProps = defaultProps;
 export default MultipleValueTextInput;

@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../src/styles/styles.css"],
+  "sourcesContent": [".multiple-value-text-input input,\n.multiple-value-text-input label {\n\twidth: 100%;\n}\n.multiple-value-text-input .multiple-value-text-input-item {\n\tpadding: 5px;\n\tbackground: #ccc;\n\tmargin-right: 5px;\n}\n.multiple-value-text-input .multiple-value-text-input-item-delete-button {\n\tcursor: pointer;\n}\n"],
+  "mappings": ";AAAA;AAAA;AAEC;AAAA;AAED;AACC;AACA;AACA;AAAA;AAED;AACC;AAAA;",
+  "names": []
+}
