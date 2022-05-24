@@ -8,7 +8,8 @@ const DevEnvironmentApp = () => {
 	return (
 		<div>
 			<h1>React Multivalue Test Input Testing Environment</h1>
-			<MultipleValueTextInput />
+			<p>{values.length} values entered.</p>
+			<MultipleValueTextInput onItemAdded={(_, resultItems) => setValues(resultItems)} />
 		</div>
 	);
 };
