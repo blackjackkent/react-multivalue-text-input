@@ -1,6 +1,7 @@
 const { build } = require('esbuild');
 const chokidar = require('chokidar');
 const liveServer = require('live-server');
+const cssModulesPlugin = require('esbuild-css-modules-plugin');
 
 (async () => {
 	const builder = await build({
@@ -16,7 +17,8 @@ const liveServer = require('live-server');
 		// Removes whitespace, etc. depending on `NODE_ENV=...`.
 		minify: process.env.NODE_ENV === 'production',
 		outfile: 'public/script.js',
-		sourcemap: true
+		sourcemap: true,
+		plugins: [cssModulesPlugin()]
 	});
 	// `chokidar` watcher source changes.
 	chokidar

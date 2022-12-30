@@ -21,7 +21,8 @@
 		"skipLibCheck": true, // Skip type checking of all declaration files
 		"sourceMap": true, // Generate corrresponding .map file
 		"strict": true, // Enable all strict type checking options
-		"target": "es6" // Specify ECMAScript target version
+		"target": "es6", // Specify ECMAScript target version
+		"plugins": [{ "name": "typescript-plugin-css-modules" }]
 	},
 	"include": ["src/**/*.ts", "src/**/*.tsx"],
 	"exclude": [

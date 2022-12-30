@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import '../styles/styles.css';
+import styles from './MultipleValueTextInput.module.css';
 import { MultipleValueTextInputProps } from '../types';
 import MultipleValueTextInputItem from './MultipleValueTextInputItem';
 
@@ -94,7 +94,11 @@ function MultipleValueTextInput({
 	));
 	return (
 		<div className="multiple-value-text-input" role="form">
-			<label htmlFor={name} className={labelClassName} data-testid="label">
+			<label
+				htmlFor={name}
+				className={`${labelClassName} ${styles.inputLabel}`}
+				data-testid="label"
+			>
 				{label}
 				<div className="multiple-value-text-input-item-container">
 					{values.length > 0 && <p role="list">{valueDisplays}</p>}
@@ -108,7 +112,7 @@ function MultipleValueTextInput({
 					onKeyPress={handleKeypress}
 					onChange={handleValueChange}
 					onBlur={handleBlur}
-					className={className}
+					className={`${className} ${styles.inputElement}`}
 					{...forwardedProps}
 				/>
 			</label>

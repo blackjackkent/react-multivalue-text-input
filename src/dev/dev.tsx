@@ -6,7 +6,7 @@ const DevEnvironmentApp = () => {
 	const [values, setValues] = useState<string[]>([]);
 
 	return (
-		<div>
+		<div style={{ width: '50%', margin: 'auto' }}>
 			<h1>React Multivalue Test Input Testing Environment</h1>
 			<p>{values.length} values entered.</p>
 			<MultipleValueTextInput

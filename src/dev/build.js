@@ -1,4 +1,5 @@
 const { build } = require('esbuild');
+const cssModulesPlugin = require('esbuild-css-modules-plugin');
 const { dependencies } = require('../../package.json');
 
 const entryFile = 'src/index.tsx';
@@ -9,7 +10,8 @@ const shared = {
 	external: Object.keys(dependencies),
 	logLevel: 'info',
 	minify: true,
-	sourcemap: true
+	sourcemap: true,
+	plugins: [cssModulesPlugin()]
 };
 
 build({

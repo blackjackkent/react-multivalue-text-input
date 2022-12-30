@@ -1,14 +1,16 @@
-/* src/styles/styles.css */
-.multiple-value-text-input input,
-.multiple-value-text-input label {
+/* src/components/MultipleValueTextInput.module.css */
+.inputElement,
+.inputLabel {
   width: 100%;
 }
-.multiple-value-text-input .multiple-value-text-input-item {
+
+/* src/components/MultipleValueTextInputItem.module.css */
+.inputItem {
   padding: 5px;
   background: #ccc;
   margin-right: 5px;
 }
-.multiple-value-text-input .multiple-value-text-input-item-delete-button {
+.deleteButton {
   cursor: pointer;
 }
 /*# sourceMappingURL=script.css.map */
