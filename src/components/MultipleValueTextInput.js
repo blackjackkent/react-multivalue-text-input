@@ -74,6 +74,25 @@ const MultipleValueTextInput = ({
 		setValue('');
 		onItemAdded(value, newValues);
 	};
+	const handleItemsAdd = (addedValues) => {
+		let uniqueValues = []
+		addedValues.forEach((addedValue) => {
+			if (addedValue && !values.includes(addedValue) && !uniqueValues.includes(addedValue)) {
+				uniqueValues = uniqueValues.concat(addedValue)
+			}
+		})
+		if(uniqueValues.length > 0) {
+			const newValues = values.concat(uniqueValues);
+			setValues(newValues);
+			setValue('');
+			uniqueValues.forEach((addedValue) => {
+				onItemAdded(addedValue, newValues);
+			})
+		} else {
+			setValue('');
+			return;
+		}
+	};
 	const handleItemRemove = (removedValue) => {
 		const currentValues = values;
 		const newValues = currentValues.filter((v) => v !== removedValue);
@@ -90,13 +109,21 @@ const MultipleValueTextInput = ({
 	};
 	const handlePaste = (e) => {
 		const pastedText = e.clipboardData.getData('Text')
-		delimiters.forEach((delimiter) => {
-			if(pastedText.includes(delimiter)) {
-				e.preventDefault();
-				const values = pastedText.split(delimiter)
-				values.forEach((value) => {handleItemAdd(value, onItemAdded)})
-			}
-		})
+		let splitTerms = splitMulti(pastedText)
+		if (splitTerms.length > 0) {
+			e.preventDefault();
+			handleItemsAdd(splitTerms)
+		}
+	}
+
+	//to handle scenarios where pasted text has more than one delimiter in it
+	const splitMulti = (str) => {
+		var tempChar = delimiters[0]; // We can use the first token as a temporary join character
+		for(var i = 1; i < delimiters.length; i++){
+			str = str.split(delimiters[i]).join(tempChar);
+		}
+		str = str.split(tempChar);
+		return str;
 	}
 
 	const handleBlur = (e) => {
