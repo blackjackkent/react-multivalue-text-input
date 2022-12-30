@@ -20,7 +20,7 @@ const MultipleValueTextInputItem = (props: MultipleValueTextInputItemProps) => {
 				data-value={value}
 				tabIndex={-1}
 				role="button"
-				onKeyPress={() => handleItemRemove(value)}
+				onKeyUp={() => handleItemRemove(value)}
 				onClick={() => handleItemRemove(value)}
 			>
 				{deleteButton}
