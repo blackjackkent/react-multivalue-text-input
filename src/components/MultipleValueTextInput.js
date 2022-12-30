@@ -60,6 +60,7 @@ const MultipleValueTextInput = ({
 }) => {
 	const [values, setValues] = useState(initialValues);
 	const [value, setValue] = useState('');
+	const delimiters = charCodes.map(function (code) { return String.fromCharCode(code)})
 	const handleValueChange = (e) => {
 		setValue(e.target.value);
 	};
@@ -87,6 +88,17 @@ const MultipleValueTextInput = ({
 			handleItemAdd(e.target.value, onItemAdded);
 		}
 	};
+	const handlePaste = (e) => {
+		const pastedText = e.clipboardData.getData('Text')
+		delimiters.forEach((delimiter) => {
+			if(pastedText.includes(delimiter)) {
+				e.preventDefault();
+				const values = pastedText.split(delimiter)
+				values.forEach((value) => {handleItemAdd(value, onItemAdded)})
+			}
+		})
+	}
+
 	const handleBlur = (e) => {
 		// 13: Enter, 44: Comma
 		if (shouldAddOnBlur) {
@@ -118,6 +130,7 @@ const MultipleValueTextInput = ({
 					onKeyPress={handleKeypress}
 					onChange={handleValueChange}
 					onBlur={handleBlur}
+					onPaste={handlePaste}
 					className={className}
 					{...forwardedProps}
 				/>
