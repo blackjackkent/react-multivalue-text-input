@@ -7,5 +7,5 @@ module.exports = {
 		'\\.(css|scss)$': '<rootDir>/utilities/styleMock.ts'
 	},
 	setupFilesAfterEnv: ['<rootDir>/utilities/testSetup.ts'],
-	testPathIgnorePatterns: ['/node_modules/', '/utilities/', '/build/components/']
+	testPathIgnorePatterns: ['/node_modules/', '/utilities/', '/build/components/', '/dist/']
 };
