@@ -1,103 +1,74 @@
 {
 	"name": "react-multivalue-text-input",
-	"version": "0.2.0",
+	"version": "2.0.0",
 	"description": " A text input component for React which maintains and displays a collection of entered values as an array of strings.",
-	"browser": "build/index.js",
-	"homepage": "https://blackjackkent.github.io/react-multivalue-text-input/styleguide/",
-	"keywords": [
-		"react",
-		"reactjs",
-		"text input",
-		"input",
-		"textinput",
-		"ui",
-		"user interface",
-		"forms",
-		"html"
-	],
-	"bugs": {
-		"url": "https://github.com/blackjackkent/react-multivalue-text-input/issues",
-		"email": "rosalind@blackjack-software.com"
+	"module": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"scripts": {
+		"prepare": "husky install",
+		"dev": "node src/dev/serve.js",
+		"clean": "rimraf dist",
+		"build": "npm run clean && node src/dev/build.js && tsc --emitDeclarationOnly --outDir dist",
+		"test": "jest",
+		"lint": "eslint src/",
+		"validate": "run-s test lint",
+		"docs:serve": "npx styleguidist server",
+		"docs:build": "npx styleguidist build",
+		"prepublishOnly": "npm run build"
 	},
-	"license": "MIT",
-	"peerDependencies": {
-		"react": "^16.3.2"
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"@testing-library/dom": "^8.13.0",
+		"@testing-library/jest-dom": "^5.16.4",
+		"@testing-library/react": "^13.2.0",
+		"@testing-library/user-event": "^14.1.1",
+		"@types/jest": "^27.5.0",
+		"@types/testing-library__react": "^10.2.0",
+		"@typescript-eslint/eslint-plugin": "^5.21.0",
+		"@typescript-eslint/parser": "^5.21.0",
+		"chokidar": "^3.5.3",
+		"commitizen": "^4.2.4",
+		"css-loader": "^6.7.1",
+		"css-tree": "^2.3.1",
+		"cz-conventional-changelog": "^3.3.0",
+		"esbuild": "^0.14.38",
+		"esbuild-css-modules-plugin": "^2.6.3",
+		"eslint": "^8.14.0",
+		"eslint-config-airbnb": "^19.0.4",
+		"eslint-config-prettier": "^8.5.0",
+		"husky": "^8.0.1",
+		"jest": "^28.0.3",
+		"jest-environment-jsdom": "^28.0.2",
+		"live-server": "^1.2.2",
+		"npm-run-all": "^4.1.5",
+		"react-docgen-typescript": "^2.2.2",
+		"react-styleguidist": "^11.2.0",
+		"rimraf": "^3.0.2",
+		"style-loader": "^3.3.1",
+		"ts-jest": "^28.0.1",
+		"ts-loader": "^9.3.0",
+		"typescript": "^4.6.4",
+		"typescript-plugin-css-modules": "^4.1.1",
+		"webpack": "^5.72.0"
 	},
 	"dependencies": {
-		"prop-types": "^15.6.1",
-		"react-dom": "^16.3.2"
+		"@types/react": "^18.0.8",
+		"@types/react-dom": "^18.0.3",
+		"prop-types": "^15.8.1",
+		"react": "^18.1.0",
+		"react-dom": "^18.1.0"
 	},
-	"scripts": {
-		"pretest": "yarn lint",
-		"test": "jest --coverage",
-		"posttest": "make-coverage-badge",
-		"serve:docs": "npx styleguidist server",
-		"build:docs": "npx styleguidist build",
-		"build": "webpack",
-		"clean": "rimraf ./build",
-		"lint": "eslint src/",
-		"lint:watch": "esw src/ -w"
+	"peerDependencies": {
+		"react": "^18.1.0",
+		"react-dom": "^18.1.0"
 	},
-	"author": {
-		"name": "Rosalind Wills",
-		"email": "rosalind@blackjack-software.com"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/blackjackkent/react-multivalue-text-input"
-	},
-	"devDependencies": {
-		"babel-cli": "^6.26.0",
-		"babel-core": "^6.26.0",
-		"babel-eslint": "^8.2.3",
-		"babel-loader": "^7.1.4",
-		"babel-plugin-transform-object-rest-spread": "^6.26.0",
-		"babel-plugin-transform-react-jsx": "^6.24.1",
-		"babel-preset-env": "^1.6.1",
-		"css-hot-loader": "^1.3.9",
-		"css-loader": "^0.28.11",
-		"enzyme": "^3.3.0",
-		"enzyme-adapter-react-16": "^1.1.1",
-		"eslint": "^4.19.1",
-		"eslint-config-airbnb": "^16.1.0",
-		"eslint-plugin-import": "^2.11.0",
-		"eslint-plugin-jsx-a11y": "^6.0.3",
-		"eslint-plugin-react": "^7.7.0",
-		"eslint-watch": "^3.1.4",
-		"extract-text-webpack-plugin": "^3.0.2",
-		"html-webpack-plugin": "^3.2.0",
-		"jest": "^22.4.3",
-		"jest-enzyme": "^6.0.0",
-		"node-sass": "^4.8.3",
-		"react": "^16.3.2",
-		"react-styleguidist": "^7.0.6",
-		"sass-loader": "^7.0.1",
-		"style-loader": "^0.21.0",
-		"webpack": "3.5.5"
-	},
-	"jest": {
-		"moduleNameMapper": {
-			"\\.(css|scss)$": "<rootDir>/utilities/styleMock.js"
-		},
-		"setupTestFrameworkScriptFile": "./node_modules/jest-enzyme/lib/index.js",
-		"testEnvironment": "enzyme",
-		"testEnvironmentOptions": {
-			"enzymeAdapter": "react16"
-		},
-		"coverageThreshold": {
-			"global": {
-				"branches": 100,
-				"functions": 100,
-				"lines": 100,
-				"statements": 100
-			}
-		},
-		"coveragePathIgnorePatterns": [
-			"/node_modules/",
-			"/utilities/"
-		],
-		"coverageReporters": [
-			"json-summary"
-		]
+	"files": [
+		"dist"
+	],
+	"config": {
+		"commitizen": {
+			"path": "./node_modules/cz-conventional-changelog"
+		}
 	}
 }

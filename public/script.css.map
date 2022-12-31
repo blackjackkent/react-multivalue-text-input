@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../src/components/MultipleValueTextInput.module.css", "../src/components/MultipleValueTextInputItem.module.css"],
+  "sourcesContent": [".inputElement,\n.inputLabel {\n\twidth: 100%;\n}\n", ".inputItem {\n\tpadding: 5px;\n\tbackground: #ccc;\n\tmargin-right: 5px;\n}\n.deleteButton {\n\tcursor: pointer;\n}\n"],
+  "mappings": ";AAAA;AAAA;AAEC;AAAA;;;ACFD;AACC;AACA;AACA;AAAA;AAED;AACC;AAAA;",
+  "names": []
+}

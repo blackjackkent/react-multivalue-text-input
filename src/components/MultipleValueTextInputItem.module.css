@@ -1,0 +1,8 @@
+.inputItem {
+	padding: 5px;
+	background: #ccc;
+	margin-right: 5px;
+}
+.deleteButton {
+	cursor: pointer;
+}

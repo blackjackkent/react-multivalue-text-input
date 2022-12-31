@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { MultipleValueTextInputItemProps } from '../types';
+import styles from './MultipleValueTextInputItem.module.css';
 
 const propTypes = {
 	value: PropTypes.string.isRequired,
@@ -7,17 +9,17 @@ const propTypes = {
 	deleteButton: PropTypes.node.isRequired
 };
 
-const MultipleValueTextInputItem = (props) => {
+const MultipleValueTextInputItem = (props: MultipleValueTextInputItemProps) => {
 	const { value, handleItemRemove, deleteButton } = props;
 	return (
-		<span className="multiple-value-text-input-item">
-			{value}{' '}
+		<span className={`multiple-value-text-input-item ${styles.inputItem}`} role="listitem">
+			<span data-testid="value">{value}</span>{' '}
 			<span
-				className="multiple-value-text-input-item-delete-button"
+				className={`multiple-value-text-input-item-button ${styles.deleteButton}`}
 				data-value={value}
-				tabIndex="-1"
+				tabIndex={-1}
 				role="button"
-				onKeyPress={() => handleItemRemove(value)}
+				onKeyUp={() => handleItemRemove(value)}
 				onClick={() => handleItemRemove(value)}
 			>
 				{deleteButton}

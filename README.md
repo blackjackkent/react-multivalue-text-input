@@ -18,14 +18,16 @@ yarn add react-multivalue-text-input
 2. Include the component in your React project
 
 ```js
-import MultipleValueTextInput from 'react-multiple-value-text-input';
+import MultipleValueTextInput from 'react-multivalue-text-input';
 ```
 
 3. See the [demos](https://blackjackkent.github.io/react-multivalue-text-input/styleguide/) for sample usage.
 
 ## Authors
 
-* **Rosalind Wills** - [blackjackkent](https://github.com/blackjackkent)
+-   **Rosalind Wills** - [blackjackkent](https://github.com/blackjackkent)
+
+Pull requests, suggestions, and issue feedback appreciated!
 
 ## License
 
