@@ -25,7 +25,7 @@ import MultipleValueTextInput from 'react-multivalue-text-input';
 
 ## Authors
 
-* **Rosalind Wills** - [blackjackkent](https://github.com/blackjackkent)
+-   **Rosalind Wills** - [blackjackkent](https://github.com/blackjackkent)
 
 Pull requests, suggestions, and issue feedback appreciated!
 

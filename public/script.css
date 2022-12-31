@@ -1,0 +1,16 @@
+/* src/components/MultipleValueTextInput.module.css */
+.inputElement,
+.inputLabel {
+  width: 100%;
+}
+
+/* src/components/MultipleValueTextInputItem.module.css */
+.inputItem {
+  padding: 5px;
+  background: #ccc;
+  margin-right: 5px;
+}
+.deleteButton {
+  cursor: pointer;
+}
+/*# sourceMappingURL=script.css.map */

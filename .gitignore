@@ -1,5 +1,12 @@
-/node_modules
-/coverage
-/build
+# dev
+dist
+coverage
+node_modules
+public/script.js
+public/script.js.map
+
 id_travis_rsa*
 /.vscode
+
+# OS
+.DS_Store

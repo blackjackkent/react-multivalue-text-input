@@ -1,48 +1,42 @@
 {
-	"extends": "airbnb",
+	"extends": [
+		"airbnb",
+		"eslint:recommended",
+		"plugin:@typescript-eslint/recommended",
+		"plugin:import/typescript",
+		"prettier"
+	],
+	"parser": "@typescript-eslint/parser",
+	"plugins": ["@typescript-eslint", "import"],
+	"settings": {
+		"import/resolver": {
+			"node": {
+				"extensions": [".js", ".jsx", ".ts", ".tsx", ".d.ts"],
+				"moduleDirectory": ["node_modules", "src/"]
+			}
+		},
+
+		"project": {}
+	},
 	"env": {
 		"browser": true,
 		"jest": true
 	},
-	"globals": {
-		"API_BASE_URL": false,
-		"TUMBLR_CLIENT_BASE_URL": false
-	},
 	"rules": {
-		"comma-dangle": ["error", "never"],
-		"linebreak-style": ["error", "windows"],
-		"indent": [
-			"error",
-			"tab",
-			{
-				"SwitchCase": 1
-			}
-		],
 		"no-tabs": "off",
+		"linebreak-style": ["error", "windows"],
+		"indent": ["error", "tab"],
 		"react/jsx-indent": ["error", "tab"],
-		"react/jsx-filename-extension": "off",
-		"react/sort-comp": [
-			"error",
-			{
-				"order": ["lifecycle", "static-methods", "everything-else", "render"]
-			}
-		],
-		"class-methods-use-this": "off",
-		"no-plusplus": "off",
 		"react/jsx-indent-props": ["error", "tab"],
-		"arrow-body-style": ["error", "as-needed"],
+		"react/jsx-props-no-spreading": "off",
+		"react/function-component-definition": "off",
+		"comma-dangle": ["error", "never"],
+		"import/extensions": ["error", "never"],
+		"react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
+		"react/require-default-props": "off",
 		"import/no-extraneous-dependencies": [
 			"error",
-			{
-				"devDependencies": [
-					"**/*.test.js",
-					"**/*.spec.js",
-					"**/testHelpers.js",
-					"**/setupTests.js"
-				]
-			}
-		],
-		"function-paren-newline": ["error", "consistent"],
-		"arrow-parens": ["error", "always"]
+			{ "devDependencies": ["**/*.test.tsx", "**/*.spec.tsx", "utilities/*.ts"] }
+		]
 	}
 }
