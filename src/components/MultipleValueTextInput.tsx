@@ -64,6 +64,25 @@ function MultipleValueTextInput({
 		setValue('');
 		onItemAdded(value, newValues);
 	};
+	const handleItemsAdd = (addedValues: string[]) => {
+		let uniqueValues: string[] = []
+		addedValues.forEach((addedValue) => {
+			if (addedValue && !values.includes(addedValue) && !uniqueValues.includes(addedValue)) {
+				uniqueValues = uniqueValues.concat(addedValue)
+			}
+		})
+		if (uniqueValues.length > 0) {
+			const newValues = values.concat(uniqueValues)
+			setValues(newValues)
+			setValue('')
+			uniqueValues.forEach((addedValue) => {
+				onItemAdded(addedValue, newValues)
+			})
+		} else {
+			setValue('')
+			return
+		}
+	};
 	const handleItemRemove = (removedValue: string) => {
 		const currentValues = values;
 		const newValues = currentValues.filter((v) => v !== removedValue);
@@ -84,6 +103,31 @@ function MultipleValueTextInput({
 			handleItemAdd(e.target.value);
 		}
 	};
+	const handlePaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
+		const pastedText = e.clipboardData.getData('text/plain')
+		let areSubmitKeysPresent = false
+		submitKeys.forEach((delimiter) => {
+			if(pastedText.includes(delimiter)) {
+				areSubmitKeysPresent = true
+			}
+		})
+		if (areSubmitKeysPresent) {
+			let splitTerms = splitMulti(pastedText)
+			if (splitTerms.length > 0) {
+				e.preventDefault()
+				handleItemsAdd(splitTerms)
+			}
+		}
+	}
+
+	//to handle scenarios where pasted text has more than one submitKeys in it
+	const splitMulti = (str: string) => {
+		var tempChar = submitKeys[0] // We can use the first token as a temporary join character
+		for (var i = 1; i < submitKeys.length; i++) {
+			str = str.split(submitKeys[i]).join(tempChar)
+		}
+		return str.split(tempChar)
+	}
 	const valueDisplays = values.map((v) => (
 		<MultipleValueTextInputItem
 			value={v}
@@ -111,6 +155,7 @@ function MultipleValueTextInput({
 					type="text"
 					onKeyPress={handleKeypress}
 					onChange={handleValueChange}
+					onPaste={handlePaste}
 					onBlur={handleBlur}
 					className={`${className} ${styles.inputElement}`}
 					{...forwardedProps}

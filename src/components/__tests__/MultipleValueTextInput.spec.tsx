@@ -180,4 +180,45 @@ describe('behavior', () => {
 			expect(items).toHaveLength(0);
 		});
 	});
+	it('should allow user to add multiple unique items from clipboard if submitkeys are present', async () => {
+		const onItemAdd = jest.fn();
+		const props = createTestProps({ onItemAdded: onItemAdd, submitKeys: [",",";"] });
+		const { user, getByRole, queryAllByRole } = renderWithUserInteraction(
+			<MultipleValueTextInput {...props} />
+		);
+		const input = getByRole('textbox');
+		const initialItems = queryAllByRole('listitem');
+		expect(initialItems.length).toBe(0);
+		await user.click(input);
+		await user.paste("input1,input2;input3,input4,,input5,input1;");
+		await waitFor(() => {
+			expect(onItemAdd).toHaveBeenCalledTimes(5);
+			const items = queryAllByRole('listitem');
+			expect(items).toHaveLength(5);
+			expect(items[0]).toHaveTextContent('input1');
+			expect(items[1]).toHaveTextContent('input2');
+			expect(items[2]).toHaveTextContent('input3');
+			expect(items[3]).toHaveTextContent('input4');
+			expect(items[4]).toHaveTextContent('input5');
+			expect(input).toHaveValue("")
+		});
+	});
+	it('should allow user to view text from clipboard if submitkeys are not present', async () => {
+		const onItemAdd = jest.fn();
+		const props = createTestProps({ onItemAdded: onItemAdd, submitKeys: [",",";"] });
+		const { user, getByRole, queryAllByRole } = renderWithUserInteraction(
+			<MultipleValueTextInput {...props} />
+		);
+		const input = getByRole('textbox');
+		const initialItems = queryAllByRole('listitem');
+		expect(initialItems.length).toBe(0);
+		await user.click(input);
+		await user.paste("john doe");
+		await waitFor(() => {
+			expect(onItemAdd).toHaveBeenCalledTimes(0);
+			const items = queryAllByRole('listitem');
+			expect(items).toHaveLength(0);
+			expect(input).toHaveValue("john doe")
+		});
+	});
 });
