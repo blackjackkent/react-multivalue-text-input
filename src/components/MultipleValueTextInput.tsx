@@ -80,7 +80,6 @@ function MultipleValueTextInput({
 			})
 		} else {
 			setValue('')
-			return
 		}
 	};
 	const handleItemRemove = (removedValue: string) => {
@@ -103,6 +102,16 @@ function MultipleValueTextInput({
 			handleItemAdd(e.target.value);
 		}
 	};
+
+	const splitMulti = (str: string) => {
+		const tempChar = submitKeys[0] // We can use the first token as a temporary join character
+		let result: string = str
+		for (let i = 1; i < submitKeys.length; i+=1) {
+			result = result.split(submitKeys[i]).join(tempChar) // Handle scenarios where pasted text has more than one submitKeys in it
+		}
+		return result.split(tempChar)
+	}
+
 	const handlePaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
 		const pastedText = e.clipboardData.getData('text/plain')
 		let areSubmitKeysPresent = false
@@ -112,7 +121,7 @@ function MultipleValueTextInput({
 			}
 		})
 		if (areSubmitKeysPresent) {
-			let splitTerms = splitMulti(pastedText)
+			const splitTerms = splitMulti(pastedText)
 			if (splitTerms.length > 0) {
 				e.preventDefault()
 				handleItemsAdd(splitTerms)
@@ -120,14 +129,6 @@ function MultipleValueTextInput({
 		}
 	}
 
-	//to handle scenarios where pasted text has more than one submitKeys in it
-	const splitMulti = (str: string) => {
-		var tempChar = submitKeys[0] // We can use the first token as a temporary join character
-		for (var i = 1; i < submitKeys.length; i++) {
-			str = str.split(submitKeys[i]).join(tempChar)
-		}
-		return str.split(tempChar)
-	}
 	const valueDisplays = values.map((v) => (
 		<MultipleValueTextInputItem
 			value={v}
