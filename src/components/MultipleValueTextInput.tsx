@@ -67,14 +67,9 @@ function MultipleValueTextInput({
 		onItemAdded(value, newValues);
 	};
 	const handleItemsAdd = (addedValues: string[]) => {
-		let uniqueValues: string[] = []
-		addedValues.forEach((addedValue) => {
-			if (addedValue && !values.includes(addedValue) && !uniqueValues.includes(addedValue)) {
-				uniqueValues = uniqueValues.concat(addedValue)
-			}
-		})
+		const uniqueValues = Array.from(new Set(addedValues.filter(elm => elm && !values.includes(elm))));
 		if (uniqueValues.length > 0) {
-			const newValues = values.concat(uniqueValues)
+			const newValues = Array.from(new Set([...values, ...uniqueValues]));
 			setValues(newValues)
 			setValue('')
 			uniqueValues.forEach((addedValue) => {
@@ -116,12 +111,7 @@ function MultipleValueTextInput({
 
 	const handlePaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
 		const pastedText = e.clipboardData.getData('text/plain')
-		let areSubmitKeysPresent = false
-		delimiters.forEach((delimiter) => {
-			if(pastedText.includes(delimiter)) {
-				areSubmitKeysPresent = true
-			}
-		})
+		const areSubmitKeysPresent = delimiters.some((d) => pastedText.includes(d));
 		if (areSubmitKeysPresent) {
 			const splitTerms = splitMulti(pastedText)
 			if (splitTerms.length > 0) {
