@@ -51,6 +51,8 @@ function MultipleValueTextInput({
 }: MultipleValueTextInputProps) {
 	const [values, setValues] = useState(initialValues);
 	const [value, setValue] = useState('');
+	const nonCharacterKeyLabels: string[] = ['Enter','Tab']
+	const delimiters: string[] = submitKeys.filter( ( element ) => !nonCharacterKeyLabels.includes( element ) );
 	const handleValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setValue(e.currentTarget.value);
 	};
@@ -104,10 +106,10 @@ function MultipleValueTextInput({
 	};
 
 	const splitMulti = (str: string) => {
-		const tempChar = submitKeys[0] // We can use the first token as a temporary join character
+		const tempChar = delimiters[0] // We can use the first token as a temporary join character
 		let result: string = str
-		for (let i = 1; i < submitKeys.length; i+=1) {
-			result = result.split(submitKeys[i]).join(tempChar) // Handle scenarios where pasted text has more than one submitKeys in it
+		for (let i = 1; i < delimiters.length; i+=1) {
+			result = result.split(delimiters[i]).join(tempChar) // Handle scenarios where pasted text has more than one submitKeys in it
 		}
 		return result.split(tempChar)
 	}
@@ -115,7 +117,7 @@ function MultipleValueTextInput({
 	const handlePaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
 		const pastedText = e.clipboardData.getData('text/plain')
 		let areSubmitKeysPresent = false
-		submitKeys.forEach((delimiter) => {
+		delimiters.forEach((delimiter) => {
 			if(pastedText.includes(delimiter)) {
 				areSubmitKeysPresent = true
 			}
