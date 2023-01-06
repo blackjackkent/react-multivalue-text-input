@@ -1,6 +1,6 @@
 {
 	"name": "react-multivalue-text-input",
-	"version": "2.1.0",
+	"version": "2.2.0",
 	"description": " A text input component for React which maintains and displays a collection of entered values as an array of strings.",
 	"module": "dist/index.js",
 	"types": "dist/index.d.ts",
@@ -8,7 +8,7 @@
 		"prepare": "husky install",
 		"dev": "node src/dev/serve.js",
 		"clean": "rimraf dist",
-		"build": "npm run clean && node src/dev/build.js && tsc --emitDeclarationOnly --outDir dist",
+		"build": "npm run clean && node src/dev/build.js && tsc",
 		"test": "jest",
 		"lint": "eslint src/",
 		"validate": "run-s test lint",
