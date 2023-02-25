@@ -8,7 +8,7 @@
 		"prepare": "husky install",
 		"dev": "node src/dev/serve.js",
 		"clean": "rimraf dist",
-		"build": "npm run clean && node src/dev/build.js && tsc",
+		"build": "npm run clean && node src/dev/build.js",
 		"test": "jest",
 		"lint": "eslint src/",
 		"validate": "run-s test lint",
