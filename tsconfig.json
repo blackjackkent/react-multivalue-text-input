@@ -1,14 +1,14 @@
 {
 	"compilerOptions": {
-		"target": "ESNext",
-		"module": "commonjs",
 		"declaration": true,
-		"outDir": "./dist",
+		"target": "esnext",
+		"lib": ["esnext", "dom"],
 		"strict": true,
-		"jsx": "react",
+		"noImplicitAny": false,
 		"esModuleInterop": true,
-		"lib": ["dom", "dom.iterable", "esnext"],
 		"moduleResolution": "node",
+		"outDir": "dist",
+		"jsx": "react",
 		"skipLibCheck": true
 	},
 	"include": ["src"],
