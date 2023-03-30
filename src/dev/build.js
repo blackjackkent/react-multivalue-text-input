@@ -16,7 +16,15 @@ const shared = {
 
 build({
 	...shared,
+	outdir: 'dist',
+	splitting: true,
 	format: 'esm',
-	outfile: './dist/index.js',
-	target: ['esnext', 'node12.22.0']
-});
+	target: ['esnext']
+}).catch(() => process.exit(1));
+
+build({
+	...shared,
+	outfile: './dist/index.cjs.js',
+	platform: 'node',
+	target: ['node12.22.0']
+}).catch(() => process.exit(1));
