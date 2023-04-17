@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './MultipleValueTextInput.module.css';
 import { MultipleValueTextInputProps } from '../types';
@@ -55,6 +55,9 @@ function MultipleValueTextInput({
 	const delimiters: string[] = submitKeys.filter(
 		(element) => !nonCharacterKeyLabels.includes(element)
 	);
+	useEffect(() => {
+		setValues(initialValues);
+	}, [JSON.stringify(initialValues)]);
 	const handleValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setValue(e.currentTarget.value);
 	};
