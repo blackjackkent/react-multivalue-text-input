@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './MultipleValueTextInput.module.css';
 import { MultipleValueTextInputProps } from '../types';
@@ -51,8 +51,13 @@ function MultipleValueTextInput({
 }: MultipleValueTextInputProps) {
 	const [values, setValues] = useState(initialValues);
 	const [value, setValue] = useState('');
-	const nonCharacterKeyLabels: string[] = ['Enter','Tab']
-	const delimiters: string[] = submitKeys.filter( ( element ) => !nonCharacterKeyLabels.includes( element ) );
+	const nonCharacterKeyLabels: string[] = ['Enter', 'Tab'];
+	const delimiters: string[] = submitKeys.filter(
+		(element) => !nonCharacterKeyLabels.includes(element)
+	);
+	useEffect(() => {
+		setValues(initialValues);
+	}, [JSON.stringify(initialValues)]);
 	const handleValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setValue(e.currentTarget.value);
 	};
@@ -67,16 +72,18 @@ function MultipleValueTextInput({
 		onItemAdded(value, newValues);
 	};
 	const handleItemsAdd = (addedValues: string[]) => {
-		const uniqueValues = Array.from(new Set(addedValues.filter(elm => elm && !values.includes(elm))));
+		const uniqueValues = Array.from(
+			new Set(addedValues.filter((elm) => elm && !values.includes(elm)))
+		);
 		if (uniqueValues.length > 0) {
 			const newValues = Array.from(new Set([...values, ...uniqueValues]));
-			setValues(newValues)
-			setValue('')
+			setValues(newValues);
+			setValue('');
 			uniqueValues.forEach((addedValue) => {
-				onItemAdded(addedValue, newValues)
-			})
+				onItemAdded(addedValue, newValues);
+			});
 		} else {
-			setValue('')
+			setValue('');
 		}
 	};
 	const handleItemRemove = (removedValue: string) => {
@@ -101,25 +108,25 @@ function MultipleValueTextInput({
 	};
 
 	const splitMulti = (str: string) => {
-		const tempChar = delimiters[0] // We can use the first token as a temporary join character
-		let result: string = str
-		for (let i = 1; i < delimiters.length; i+=1) {
-			result = result.split(delimiters[i]).join(tempChar) // Handle scenarios where pasted text has more than one submitKeys in it
+		const tempChar = delimiters[0]; // We can use the first token as a temporary join character
+		let result: string = str;
+		for (let i = 1; i < delimiters.length; i += 1) {
+			result = result.split(delimiters[i]).join(tempChar); // Handle scenarios where pasted text has more than one submitKeys in it
 		}
-		return result.split(tempChar)
-	}
+		return result.split(tempChar);
+	};
 
 	const handlePaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
-		const pastedText = e.clipboardData.getData('text/plain')
+		const pastedText = e.clipboardData.getData('text/plain');
 		const areSubmitKeysPresent = delimiters.some((d) => pastedText.includes(d));
 		if (areSubmitKeysPresent) {
-			const splitTerms = splitMulti(pastedText)
+			const splitTerms = splitMulti(pastedText);
 			if (splitTerms.length > 0) {
-				e.preventDefault()
-				handleItemsAdd(splitTerms)
+				e.preventDefault();
+				handleItemsAdd(splitTerms);
 			}
 		}
-	}
+	};
 
 	const valueDisplays = values.map((v) => (
 		<MultipleValueTextInputItem
