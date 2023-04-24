@@ -182,7 +182,11 @@ describe('behavior', () => {
 	});
 	it('should allow user to add multiple unique items from clipboard if submitkeys are present', async () => {
 		const onItemAdd = jest.fn();
-		const props = createTestProps({ onItemAdded: onItemAdd, submitKeys: [",",";"], values: ["input3"] });
+		const props = createTestProps({
+			onItemAdded: onItemAdd,
+			submitKeys: [',', ';'],
+			values: ['input3']
+		});
 		const { user, getByRole, queryAllByRole } = renderWithUserInteraction(
 			<MultipleValueTextInput {...props} />
 		);
@@ -190,7 +194,7 @@ describe('behavior', () => {
 		const initialItems = queryAllByRole('listitem');
 		expect(initialItems.length).toBe(1);
 		await user.click(input);
-		await user.paste("input1,input2;input3,input4,,input5,input1;");
+		await user.paste('input1,input2;input3,input4,,input5,input1;');
 		await waitFor(() => {
 			expect(onItemAdd).toHaveBeenCalledTimes(4);
 			// const items = queryAllByRole('listitem');
@@ -199,12 +203,12 @@ describe('behavior', () => {
 			// expect(items[1]).toHaveTextContent('input2');
 			// expect(items[2]).toHaveTextContent('input4');
 			// expect(items[3]).toHaveTextContent('input5');
-			expect(input).toHaveValue("")
+			expect(input).toHaveValue('');
 		});
 	});
 	it('should allow user to view text from clipboard if submitkeys are not present', async () => {
 		const onItemAdd = jest.fn();
-		const props = createTestProps({ onItemAdded: onItemAdd, submitKeys: [",",";"] });
+		const props = createTestProps({ onItemAdded: onItemAdd, submitKeys: [',', ';'] });
 		const { user, getByRole, queryAllByRole } = renderWithUserInteraction(
 			<MultipleValueTextInput {...props} />
 		);
@@ -212,17 +216,20 @@ describe('behavior', () => {
 		const initialItems = queryAllByRole('listitem');
 		expect(initialItems.length).toBe(0);
 		await user.click(input);
-		await user.paste("john doe");
+		await user.paste('john doe');
 		await waitFor(() => {
 			expect(onItemAdd).toHaveBeenCalledTimes(0);
 			const items = queryAllByRole('listitem');
 			expect(items).toHaveLength(0);
-			expect(input).toHaveValue("john doe")
+			expect(input).toHaveValue('john doe');
 		});
 	});
 	it('should ignore non-character submit keys from being recognized as delimiters in copied text', async () => {
 		const onItemAdd = jest.fn();
-		const props = createTestProps({ onItemAdded: onItemAdd, submitKeys: [",","Enter","Tab"] });
+		const props = createTestProps({
+			onItemAdded: onItemAdd,
+			submitKeys: [',', 'Enter', 'Tab']
+		});
 		const { user, getByRole, queryAllByRole } = renderWithUserInteraction(
 			<MultipleValueTextInput {...props} />
 		);
@@ -230,17 +237,20 @@ describe('behavior', () => {
 		const initialItems = queryAllByRole('listitem');
 		expect(initialItems.length).toBe(0);
 		await user.click(input);
-		await user.paste("My Tablet is about to Enter the door");
+		await user.paste('My Tablet is about to Enter the door');
 		await waitFor(() => {
 			expect(onItemAdd).toHaveBeenCalledTimes(0);
 			const items = queryAllByRole('listitem');
 			expect(items).toHaveLength(0);
-			expect(input).toHaveValue("My Tablet is about to Enter the door")
+			expect(input).toHaveValue('My Tablet is about to Enter the door');
 		});
 	});
 	it('should selectively ignore non-character submit keys from being recognized as delimiters in copied text', async () => {
 		const onItemAdd = jest.fn();
-		const props = createTestProps({ onItemAdded: onItemAdd, submitKeys: [",","Enter","Tab"] });
+		const props = createTestProps({
+			onItemAdded: onItemAdd,
+			submitKeys: [',', 'Enter', 'Tab']
+		});
 		const { user, getByRole, queryAllByRole } = renderWithUserInteraction(
 			<MultipleValueTextInput {...props} />
 		);
@@ -248,7 +258,7 @@ describe('behavior', () => {
 		const initialItems = queryAllByRole('listitem');
 		expect(initialItems.length).toBe(0);
 		await user.click(input);
-		await user.paste("My Tablet is about to Enter the door, value1, value2");
+		await user.paste('My Tablet is about to Enter the door, value1, value2');
 		await waitFor(() => {
 			expect(onItemAdd).toHaveBeenCalledTimes(3);
 			const items = queryAllByRole('listitem');
@@ -256,7 +266,24 @@ describe('behavior', () => {
 			expect(items[0]).toHaveTextContent('My Tablet is about to Enter the door');
 			expect(items[1]).toHaveTextContent('value1');
 			expect(items[2]).toHaveTextContent('value2');
-			expect(input).toHaveValue("")
+			expect(input).toHaveValue('');
+		});
+	});
+	it('should dynamically update values from an external prop if provided', async () => {
+		const props = createTestProps();
+		const { rerender, queryAllByRole } = renderWithUserInteraction(
+			<MultipleValueTextInput {...props} />
+		);
+		const initialItems = queryAllByRole('listitem');
+		expect(initialItems.length).toBe(0);
+		const updatedProps = createTestProps({ values: ['test1', 'test2', 'test3'] });
+		rerender(<MultipleValueTextInput {...updatedProps} />);
+		await waitFor(() => {
+			const items = queryAllByRole('listitem');
+			expect(items).toHaveLength(3);
+			expect(items[0]).toHaveTextContent('test1');
+			expect(items[1]).toHaveTextContent('test2');
+			expect(items[2]).toHaveTextContent('test3');
 		});
 	});
 });
